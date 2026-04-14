@@ -276,7 +276,7 @@
     <li><a href="#stakeholder">Stakeholder 管理</a></li>
     <li><a href="#executive">高層溝通</a></li>
     <li><a href="#cross-team">三組協調</a></li>
-    <li><a href="#landmine">地雷地圖</a></li>
+    <li><a href="#stakeholder-map">Stakeholder Map</a></li>
     <li><a href="#meetings">會議地圖</a></li>
     <li><a href="#mindset">Mindset 建立</a></li>
     <li><a href="#prep">交接準備</a></li>
@@ -976,139 +976,187 @@
   </div>
 </section>
 
-<!-- ==================== 6. 地雷地圖 ==================== -->
-<section id="landmine">
-  <h2><span class="num">6</span>地雷地圖</h2>
-  <p>每個組都有<strong>正在燒的事、敏感的人、不能碰的話題</strong>。這些隱性知識你不寫下來，代理人踩到才知道。</p>
+<!-- ==================== 6. Stakeholder Map ==================== -->
+<section id="stakeholder-map">
+  <h2><span class="num">6</span>Stakeholder Map</h2>
+  <p>代理人最大的弱勢是<strong>不知道每個人在意什麼</strong>。這張地圖讓 Peter 和 Mei 在第一次互動前就知道該用什麼方式跟誰溝通。</p>
 
-  <div class="callout danger">
-    <strong>重要：</strong>這份地圖<strong>只給代理人看，不對外流通</strong>。這不是八卦紀錄，是保護代理人不踩坑的防禦工具。
+  <h3>影響力 × 關注度矩陣</h3>
+  <p>先把所有 Stakeholder 放進這四個象限，決定投入多少精力：</p>
+  <div class="card-grid">
+    <div class="card" style="border-left: 4px solid var(--red);">
+      <div class="card-title" style="color:var(--red);">高影響力 × 高關注度</div>
+      <div class="card-subtitle">緊密管理 — 最重要，定期主動溝通</div>
+      <p style="font-size:.9rem;"><em>（填入：例如直屬老闆、產品 VP、關鍵 PM Lead...）</em></p>
+      <ul style="margin:0; font-size:.9rem;">
+        <li>每週主動 update</li>
+        <li>重大決策前先 align</li>
+        <li>Peter 主要負責</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--amber);">
+      <div class="card-title" style="color:var(--amber);">高影響力 × 低關注度</div>
+      <div class="card-subtitle">保持滿意 — 不要驚動，但別讓他不開心</div>
+      <p style="font-size:.9rem;"><em>（填入：例如不常互動但有決策權的高層...）</em></p>
+      <ul style="margin:0; font-size:.9rem;">
+        <li>有重大進展時才主動報告</li>
+        <li>不要製造意外</li>
+        <li>Peter 按需對接</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--accent);">
+      <div class="card-title" style="color:var(--accent);">低影響力 × 高關注度</div>
+      <div class="card-subtitle">保持知情 — 他們很在意，要讓他們覺得被重視</div>
+      <p style="font-size:.9rem;"><em>（填入：例如經常問進度的跨部門 PM、合作密切的 Engineer...）</em></p>
+      <ul style="margin:0; font-size:.9rem;">
+        <li>CC 在 update 裡，定期同步</li>
+        <li>有問必答，速度要快</li>
+        <li>Mei 主要負責</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--green);">
+      <div class="card-title" style="color:var(--green);">低影響力 × 低關注度</div>
+      <div class="card-subtitle">最低維護 — 有需要時再互動</div>
+      <p style="font-size:.9rem;"><em>（填入：例如偶爾合作的團隊、支援部門...）</em></p>
+      <ul style="margin:0; font-size:.9rem;">
+        <li>被動回應即可</li>
+        <li>不需要投入額外精力</li>
+      </ul>
+    </div>
   </div>
 
-  <h3>每組地雷地圖模板</h3>
-  <p>離開前針對每一組填寫以下表格：</p>
-
-  <h4 style="margin-top:1.2rem; color:var(--accent);">產品組</h4>
+  <h3>關鍵 Stakeholder 個人檔案</h3>
+  <p>針對最重要的 Stakeholder，填寫這張表給 Peter & Mei：</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th style="width:25%">面向</th><th>內容</th><th style="width:25%">建議應對</th></tr>
+        <tr>
+          <th>人名 / 角色</th>
+          <th>他在意什麼</th>
+          <th>溝通偏好</th>
+          <th>跟 Carolyn 的默契</th>
+          <th>代理人注意事項</th>
+          <th>對接人</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>進行中的火</strong></td>
-          <td><em>（填入：例如某專案延遲、技術債爆發...）</em></td>
-          <td><em>（填入建議做法）</em></td>
+          <td><em>（直屬老闆）</em></td>
+          <td><em>（填入：KPI、最關注的指標）</em></td>
+          <td><em>（填入：喜歡簡短 or 詳細？Slack or Email？）</em></td>
+          <td><em>（填入：平常怎麼互動、頻率）</em></td>
+          <td><em>（填入：地雷、禁區、要注意的眉角）</em></td>
+          <td style="font-weight:600; color:var(--accent);">Peter</td>
         </tr>
         <tr>
-          <td><strong>敏感人物 / 關係</strong></td>
-          <td><em>（填入：誰跟誰有摩擦、誰最近情緒不穩...）</em></td>
-          <td><em>（填入注意事項）</em></td>
+          <td><em>（產品 VP / Director）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td style="font-weight:600; color:var(--accent);">Peter</td>
         </tr>
         <tr>
-          <td><strong>禁區話題</strong></td>
-          <td><em>（填入：哪些決定不要翻案、哪些承諾不能反悔...）</em></td>
-          <td><em>（填入應對原則）</em></td>
+          <td><em>（主要 PM Lead）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td style="font-weight:600; color:var(--green);">Mei</td>
         </tr>
         <tr>
-          <td><strong>已承諾未兌現</strong></td>
-          <td><em>（填入：答應了誰什麼事但還沒做到...）</em></td>
-          <td><em>（填入優先處理方式）</em></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h4 style="margin-top:1.2rem; color:var(--purple);">策略師組</h4>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th style="width:25%">面向</th><th>內容</th><th style="width:25%">建議應對</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>進行中的火</strong></td>
+          <td><em>（Engineering Lead）</em></td>
           <td><em>（填入）</em></td>
           <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td style="font-weight:600; color:var(--green);">Mei</td>
         </tr>
         <tr>
-          <td><strong>敏感人物 / 關係</strong></td>
+          <td><em>（Business / Strategy）</em></td>
           <td><em>（填入）</em></td>
           <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td><em>（填入）</em></td>
+          <td style="font-weight:600; color:var(--accent);">Peter</td>
         </tr>
         <tr>
-          <td><strong>禁區話題</strong></td>
+          <td><em>（其他關鍵人物）</em></td>
           <td><em>（填入）</em></td>
           <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>已承諾未兌現</strong></td>
           <td><em>（填入）</em></td>
           <td><em>（填入）</em></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h4 style="margin-top:1.2rem; color:var(--green);">AI Enablement 組</h4>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th style="width:25%">面向</th><th>內容</th><th style="width:25%">建議應對</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>進行中的火</strong></td>
-          <td><em>（填入）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>敏感人物 / 關係</strong></td>
-          <td><em>（填入）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>禁區話題</strong></td>
-          <td><em>（填入）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>已承諾未兌現</strong></td>
-          <td><em>（填入）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>跨組的政治地雷</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th style="width:25%">面向</th><th>內容</th><th style="width:25%">建議應對</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>組間張力</strong></td>
-          <td><em>（填入：哪兩組之間有微妙競爭或不信任...）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>高層偏好</strong></td>
-          <td><em>（填入：老闆目前最關注哪一組、哪個方向...）</em></td>
-          <td><em>（填入）</em></td>
-        </tr>
-        <tr>
-          <td><strong>外部 Stakeholder 雷區</strong></td>
-          <td><em>（填入：哪個 PM/Engineering lead 最難搞...）</em></td>
           <td><em>（填入）</em></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="callout warning">
-    <strong>填寫原則：</strong>寫事實，不寫情緒。「A 跟 B 在上次會議中對 timeline 有不同意見，目前未解決」✓，「A 跟 B 不合」✗。目的是讓代理人知道背景，不是製造偏見。
+  <h3>Stakeholder 之間的關係動態</h3>
+  <p>人跟人之間的關係會影響決策走向。代理人需要知道<strong>誰跟誰是同盟、誰跟誰有張力</strong>。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:25%">關係</th><th>描述</th><th style="width:30%">對代理人的影響</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>同盟關係</strong></td>
+          <td><em>（填入：例如「PM Lead 跟 Engineering Lead 很合，通常會一起推事情」）</em></td>
+          <td><em>（填入：搞定一個就等於搞定兩個）</em></td>
+        </tr>
+        <tr>
+          <td><strong>競爭關係</strong></td>
+          <td><em>（填入：例如「A 部門和 B 部門在搶同一塊預算」）</em></td>
+          <td><em>（填入：不要在兩邊面前比較）</em></td>
+        </tr>
+        <tr>
+          <td><strong>微妙張力</strong></td>
+          <td><em>（填入：例如「某高層表面支持但私下有不同意見」）</em></td>
+          <td><em>（填入：這個議題不要公開討論，私下 align）</em></td>
+        </tr>
+        <tr>
+          <td><strong>守門人</strong></td>
+          <td><em>（填入：例如「要見 VP 之前一定要先過他的 EA / CoS」）</em></td>
+          <td><em>（填入：跟守門人保持好關係）</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>各組的 Stakeholder 溝通節奏</h3>
+  <div class="card-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="card blue">
+      <div class="card-title">產品組 Stakeholders</div>
+      <ul style="font-size:.9rem; margin:0;">
+        <li><strong>PM</strong>：每個 Sprint 對齊一次</li>
+        <li><strong>Engineering</strong>：Design review 時同步</li>
+        <li><strong>QA</strong>：交付前確認</li>
+        <li>Mei 負責日常，Peter 只在升級時介入</li>
+      </ul>
+    </div>
+    <div class="card purple">
+      <div class="card-title">策略師組 Stakeholders</div>
+      <ul style="font-size:.9rem; margin:0;">
+        <li><strong>高層</strong>：按需求約 1:1</li>
+        <li><strong>Business</strong>：策略會議中同步</li>
+        <li><strong>外部顧問</strong>：如有進行中合作需維持</li>
+        <li>Peter 主要負責，策略師組資深成員自主性高</li>
+      </ul>
+    </div>
+    <div class="card green">
+      <div class="card-title">AI Enablement Stakeholders</div>
+      <ul style="font-size:.9rem; margin:0;">
+        <li><strong>IT / Security</strong>：工具導入需確認合規</li>
+        <li><strong>各組 Lead</strong>：推動採用的窗口</li>
+        <li><strong>Management</strong>：定期報 ROI 和進度</li>
+        <li>Mei 負責推進，Peter 負責對上報告</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <strong>使用原則：</strong>這張地圖是<strong>給代理人的作戰指南</strong>，不是公開文件。填寫時寫事實和觀察，不寫主觀評價。目的是讓 Peter & Mei 第一次互動就能用對方式。
   </div>
 </section>
 
