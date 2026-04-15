@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UX Team Introduction — TrendLife</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: landscape; margin: 0; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red: #D71920;
+    --red-bright: #FF3B42;
+    --burgundy: #460002;
+    --cream: #F6EFE9;
+    --cream-deep: #EDE3DA;
+    --charcoal: #153241;
+    --dark: #1A1A1A;
+    --text: #2C2C2C;
+    --text-secondary: #7A7068;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.06);
+    --teal: #0091A7;
+    --teal-dark: #026D7D;
+    --sky: #AFE0EF;
+    --orange: #FF6200;
+    --yellow: #FEB914;
+    --pink: #FFAAB7;
+    --lilac: #B1B7FF;
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 297mm;
+    height: 210mm;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .page-arcs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 24px; left: 64px; right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: var(--text-secondary);
+    z-index: 2;
+  }
+  .page-footer .confidential {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+
+  /* ── TrendLife Logo ── */
+  .tl-logo {
+    position: absolute;
+    top: 36px; left: 64px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+  .tl-logo svg.tl-mark { width: 28px; height: 26px; }
+  .tl-logo-text {
+    font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em; color: var(--dark);
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--red);
+    border-radius: 1px;
+  }
+
+  .page-headline {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+  }
+  .page-headline .em { color: var(--red); }
+
+  .page-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-top: 8px;
+    max-width: 640px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SVG Logo inline definition ── */
+  .tl-logo-svg {
+    fill: #D71920;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 1 — COVER
+     ══════════════════════════════════════ */
+  .cover {
+    padding: 56px 72px;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(135deg, var(--cream) 60%, #F0E4D8 100%);
+  }
+  .cover-content { position: relative; z-index: 2; max-width: 640px; }
+  .cover-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(215,25,32,0.08);
+    border: 1px solid rgba(215,25,32,0.15);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 24px;
+  }
+  .cover-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .cover h1 {
+    font-size: 52px; font-weight: 900;
+    line-height: 1.1; letter-spacing: -0.03em;
+    color: var(--dark); margin-bottom: 18px;
+  }
+  .cover h1 .accent { color: var(--red); }
+  .cover .subtitle {
+    font-size: 17px; font-weight: 400;
+    color: var(--text-secondary); line-height: 1.6;
+  }
+  .cover .subtitle strong { color: var(--text); font-weight: 600; }
+  .cover-meta {
+    margin-top: 28px;
+    display: flex; gap: 24px;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .cover-meta span { display: flex; align-items: center; gap: 6px; }
+  .cover-meta .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); opacity: 0.5; }
+
+  /* ═══ PAGE 2 — ABOUT ═══ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    position: relative; z-index: 1;
+    margin-top: 28px;
+  }
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .about-card-full { grid-column: 1 / -1; }
+  .about-card h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .about-card h3 .card-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--white); flex-shrink: 0;
+    font-weight: 700;
+  }
+  .about-card p { font-size: 12.5px; line-height: 1.65; color: var(--text-secondary); }
+  .about-stats { display: flex; gap: 32px; margin-top: 16px; }
+  .about-stat-num { font-size: 36px; font-weight: 900; color: var(--red); line-height: 1; }
+  .about-stat-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* ═══ PAGE 3 — TEAM ROSTER ═══ */
+  .roster-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px; align-items: start;
+    position: relative; z-index: 1;
+    margin-top: 20px;
+  }
+  .roster-total { font-size: 64px; font-weight: 900; color: var(--red); line-height: 1; }
+  .roster-total-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px; }
+  .roster-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 12px;
+    font-size: 11px; font-weight: 600; color: var(--red);
+  }
+  .roster-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--red); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .role-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .role-group {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .role-group-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .role-group-count { font-size: 28px; font-weight: 900; line-height: 1; }
+  .role-group-title { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .role-group-desc { font-size: 10px; color: var(--text-secondary); }
+  .role-group-members { display: flex; flex-wrap: wrap; gap: 4px; }
+  .member-tag {
+    font-size: 9.5px; font-weight: 500;
+    padding: 3px 8px; border-radius: 4px;
+    background: rgba(0,0,0,0.03); color: var(--text);
+  }
+  .role-group.ux .role-group-count { color: var(--red); }
+  .role-group.vx .role-group-count { color: var(--teal); }
+  .role-group.tw .role-group-count { color: var(--orange); }
+  .role-group.de .role-group-count { color: var(--charcoal); }
+  .role-bar-track { height: 3px; border-radius: 2px; margin-top: 10px; background: var(--cream-deep); position: relative; overflow: hidden; }
+  .role-bar-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; }
+  .role-group.ux .role-bar-fill { width: 100%; background: var(--red); }
+  .role-group.vx .role-bar-fill { width: 80%; background: var(--teal); }
+  .role-group.tw .role-bar-fill { width: 80%; background: var(--orange); }
+  .role-group.de .role-bar-fill { width: 60%; background: var(--charcoal); }
+
+  /* ═══ PAGE 4 & 5 — PRODUCTS ═══ */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    position: relative; z-index: 1;
+    margin-top: 22px;
+  }
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .product-card-img {
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+    background: var(--cream-deep);
+  }
+  .product-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .product-card-img .pv-badge {
+    position: absolute;
+    top: 6px; right: 8px;
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--white);
+    background: rgba(0,0,0,0.45);
+    padding: 2px 6px; border-radius: 3px;
+  }
+  .product-card-body { padding: 12px 14px; }
+  .product-card-body h3 { font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .product-card-body p { font-size: 10px; line-height: 1.5; color: var(--text-secondary); margin-bottom: 6px; }
+  .product-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+  .product-tags span {
+    font-size: 8px; font-weight: 600;
+    padding: 2px 5px; border-radius: 3px;
+    background: rgba(215,25,32,0.06); color: var(--red);
+  }
+
+  /* Color overlay fallback when no image */
+  .product-card-img.v-red { background: var(--red); }
+  .product-card-img.v-teal { background: var(--teal); }
+  .product-card-img.v-charcoal { background: var(--charcoal); }
+  .product-card-img.v-orange { background: var(--orange); }
+  .product-card-img.v-burgundy { background: var(--burgundy); }
+  .product-card-img.v-gradient { background: linear-gradient(135deg, var(--red), var(--orange)); }
+  .product-card-img .pv-name {
+    position: absolute;
+    bottom: 10px; left: 12px;
+    font-size: 14px; font-weight: 800;
+    color: var(--white);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ═══ PAGE 6 — DESIGN PROCESS ═══ */
+  .process-flow {
+    display: flex; align-items: stretch;
+    position: relative; z-index: 1;
+    margin-top: 24px;
+  }
+  .process-phase {
+    flex: 1; padding: 22px 18px;
+    border-radius: 14px; border: 1px solid var(--border);
+    background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .process-phase + .process-phase { margin-left: 8px; }
+  .process-arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 22px; flex-shrink: 0;
+    color: var(--red); font-size: 14px; font-weight: 700; opacity: 0.4;
+  }
+  .phase-num { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .process-phase h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .process-phase p { font-size: 11px; line-height: 1.55; color: var(--text-secondary); }
+  .phase-tag { display: inline-block; margin-top: 8px; font-size: 9px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: rgba(215,25,32,0.06); color: var(--red); }
+  .diamond-bar { display: flex; margin-bottom: 14px; gap: 4px; position: relative; z-index: 1; margin-top: 20px; }
+  .diamond-half { flex: 1; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 0; border-radius: 6px; }
+  .diamond-half.discover { background: var(--red); color: var(--white); }
+  .diamond-half.deliver { background: var(--white); color: var(--red); border: 1px solid rgba(215,25,32,0.2); }
+
+  /* ═══ PAGE 7 — AI × UX ═══ */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    position: relative; z-index: 1;
+    margin-top: 24px;
+  }
+  .ai-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    position: relative; overflow: hidden;
+  }
+  .ai-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .ai-card:nth-child(1)::before { background: var(--red); }
+  .ai-card:nth-child(2)::before { background: var(--teal); }
+  .ai-card:nth-child(3)::before { background: var(--orange); }
+  .ai-card .ai-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800; margin-bottom: 14px;
+    color: var(--red);
+    background: rgba(215,25,32,0.06);
+  }
+  .ai-card:nth-child(2) .ai-icon { background: rgba(0,145,167,0.08); color: var(--teal); }
+  .ai-card:nth-child(3) .ai-icon { background: rgba(255,98,0,0.08); color: var(--orange); }
+  .ai-card h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .ai-card p { font-size: 11.5px; line-height: 1.6; color: var(--text-secondary); }
+  .ai-card ul { list-style: none; padding: 0; margin-top: 10px; }
+  .ai-card li { font-size: 11px; color: var(--text-secondary); padding: 3px 0 3px 14px; position: relative; }
+  .ai-card li::before { content: '>'; position: absolute; left: 0; color: var(--red); font-weight: 600; font-family: monospace; }
+  .ai-card:nth-child(2) li::before { color: var(--teal); }
+  .ai-card:nth-child(3) li::before { color: var(--orange); }
+
+  /* ═══ PAGE 8 — WHY JOIN ═══ */
+  .join-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    position: relative; z-index: 1;
+    margin-top: 24px;
+  }
+  .join-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 22px;
+    display: flex; gap: 14px; align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .join-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; flex-shrink: 0;
+    background: rgba(215,25,32,0.06); color: var(--red);
+  }
+  .join-card h3 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .join-card p { font-size: 11.5px; line-height: 1.6; color: var(--text-secondary); }
+  .cta-box {
+    margin-top: 20px;
+    background: var(--red);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 1;
+  }
+  .cta-box h3 { font-size: 22px; font-weight: 800; color: var(--white); line-height: 1.3; }
+  .cta-box p { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 4px; }
+  .cta-arrow { font-size: 32px; color: var(--white); opacity: 0.6; }
+
+  /* ═══ PRINT / SCREEN ═══ */
+  @media print {
+    body { margin: 0; background: var(--cream); }
+    .page { width: 100vw; height: 100vh; }
+  }
+  @media screen {
+    body { background: #D5CCC4; padding: 32px 0; }
+    .page { margin: 0 auto 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); border-radius: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable TrendLife Logo SVG -->
+<svg style="display:none">
+  <symbol id="tl-mark" viewBox="0 0 133.91 122.64">
+    <path fill="#D71920" d="M132.07,30.67c-1.84-7.9-5.5-15.32-11.17-21.12-25.65-26.27-60.08,6.57-68.61,38.85h0c-5.15,17.62-7.08,38.58,4.11,54.59-15.78-.09-37.51-3.93-43.7-20.4-4.14-17.3,16.12-29.21,30.77-32.61.6-2.33,1.29-4.73,2.11-7C-25.65,55.51-6.93,122.31,57.21,122.6c58.67,1.72,84.05-52.55,74.86-91.92ZM112.31,47.68c-1.41,13.28-11.89,47.54-33.33,51.77-2.59.51-5.27.41-7.78-.4-17.94-5.83-18.06-35.94-12.19-51.02,29.97-.12,40.99,16.13,40.99,16.13,1.35-3.59,2.44-7.34,3.24-11.18-16.52-12.08-41.66-11.28-41.66-11.28C76.94,7.26,117.59.11,112.31,47.68Z"/>
+  </symbol>
+</svg>
+
+<!-- ═══════════ PAGE 1 — COVER ═══════════ -->
+<div class="page cover">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 780 -80 Q 1050 60, 1200 350" stroke="#D71920" stroke-width="62" fill="none" stroke-linecap="round"/>
+    <path d="M 1220 480 Q 1000 680, 620 850" stroke="#AFE0EF" stroke-width="54" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M 920 -120 Q 1150 20, 1260 280" stroke="#FF3B42" stroke-width="38" fill="none" stroke-linecap="round" opacity="0.25"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-badge"><span class="dot"></span> Customer Experience</div>
+    <h1>Welcome to the<br><span class="accent">UX</span> Team</h1>
+    <p class="subtitle">
+      We are the User Experience team at TrendLife, Trend Micro's consumer brand.<br>
+      We craft <strong>secure, intuitive, and trusted</strong> digital life experiences<br>
+      that protect families worldwide.
+    </p>
+    <div class="cover-meta">
+      <span><span class="meta-dot"></span>Trend Micro — Consumer Business</span>
+      <span><span class="meta-dot"></span>Taipei, Taiwan</span>
+      <span><span class="meta-dot"></span>2026</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>UX Team Introduction</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 — WHO WE ARE ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 960 -40 Q 1180 180, 1120 480" stroke="#D71920" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.3"/>
+    <path d="M -60 620 Q 140 480, 60 260" stroke="#AFE0EF" stroke-width="40" fill="none" stroke-linecap="round" opacity="0.25"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Who We Are</div>
+  <h2 class="page-headline">
+    From <span class="em">brand transformation</span> to <span class="em">AI-powered protection</span>,<br>
+    we define the experience of family digital safety.
+  </h2>
+  <p class="page-sub">
+    TrendLife is the new consumer brand of Trend Micro. Our UX team spans design, visual, content,
+    and engineering disciplines, building end-to-end experiences from device protection to identity security for users worldwide.
+  </p>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <h3><span class="card-icon" style="background:var(--red);">T</span> The TrendLife Brand</h3>
+      <p>In 2025, Trend Micro Consumer rebranded as TrendLife, with a core mission of "protecting digital life." We're transforming from traditional cybersecurity products into an AI-driven family digital guardian platform.</p>
+    </div>
+    <div class="about-card">
+      <h3><span class="card-icon" style="background:var(--teal);">U</span> Our UX Role</h3>
+      <p>The UX team is deeply embedded across the entire product development lifecycle — from discovery and design strategy through to delivery and validation — ensuring every touchpoint delivers a secure and intuitive experience.</p>
+    </div>
+    <div class="about-card about-card-full">
+      <h3><span class="card-icon" style="background:var(--charcoal);">*</span> At a Glance</h3>
+      <div class="about-stats">
+        <div>
+          <div class="about-stat-num">16</div>
+          <div class="about-stat-label">Team Members</div>
+        </div>
+        <div>
+          <div class="about-stat-num">4</div>
+          <div class="about-stat-label">Disciplines</div>
+        </div>
+        <div>
+          <div class="about-stat-num">7</div>
+          <div class="about-stat-label">Products</div>
+        </div>
+        <div>
+          <div class="about-stat-num">1</div>
+          <div class="about-stat-label">Open Position</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>2 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 3 — TEAM ROSTER ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 1180 580 Q 920 740, 700 830" stroke="#D71920" stroke-width="42" fill="none" stroke-linecap="round" opacity="0.22"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Our Team</div>
+  <h2 class="page-headline" style="margin-bottom:0;">
+    A cross-functional team covering <span class="em">design</span> to <span class="em">engineering</span>.
+  </h2>
+
+  <div class="roster-layout">
+    <div>
+      <div class="roster-total">16</div>
+      <div class="roster-total-label">Team Members + 1 Manager</div>
+      <div class="roster-badge" style="margin-top:8px;">Hiring — 1 Sr. UX Designer</div>
+    </div>
+    <div class="role-groups">
+      <div class="role-group ux">
+        <div class="role-group-header">
+          <div class="role-group-count">5</div>
+          <div>
+            <div class="role-group-title">UX Designers</div>
+            <div class="role-group-desc">Product experience / Information architecture / Interaction / User research</div>
+          </div>
+        </div>
+        <div class="role-group-members">
+          <span class="member-tag">Mei Hung (Sr. Staff)</span>
+          <span class="member-tag">Amiga Chin (Sr.)</span>
+          <span class="member-tag">Molly Li (Sr.)</span>
+          <span class="member-tag">Peter P Wu (Sr.)</span>
+          <span class="member-tag">ShuHan Yang (Staff)</span>
+        </div>
+        <div class="role-bar-track"><div class="role-bar-fill"></div></div>
+      </div>
+      <div class="role-group vx">
+        <div class="role-group-header">
+          <div class="role-group-count">4</div>
+          <div>
+            <div class="role-group-title">VX Designers</div>
+            <div class="role-group-desc">Visual experience / Brand design / Design system / UI components</div>
+          </div>
+        </div>
+        <div class="role-group-members">
+          <span class="member-tag">Pei Chen (Staff)</span>
+          <span class="member-tag">Raymond Chang (Sr.)</span>
+          <span class="member-tag">Sparda Wei (Sr.)</span>
+          <span class="member-tag">Ivory Cheng</span>
+        </div>
+        <div class="role-bar-track"><div class="role-bar-fill"></div></div>
+      </div>
+      <div class="role-group tw">
+        <div class="role-group-header">
+          <div class="role-group-count">4</div>
+          <div>
+            <div class="role-group-title">Technical Writers</div>
+            <div class="role-group-desc">Product docs / Help Center / UX Writing / Multi-language content</div>
+          </div>
+        </div>
+        <div class="role-group-members">
+          <span class="member-tag">Linda C Lee (Sr.)</span>
+          <span class="member-tag">Michael Mundell (Sr.)</span>
+          <span class="member-tag">Rachel Lombart (Sr.)</span>
+          <span class="member-tag">Fred Melnyczuk</span>
+        </div>
+        <div class="role-bar-track"><div class="role-bar-fill"></div></div>
+      </div>
+      <div class="role-group de">
+        <div class="role-group-header">
+          <div class="role-group-count">3</div>
+          <div>
+            <div class="role-group-title">Design Engineers</div>
+            <div class="role-group-desc">Design implementation / Frontend / Design tokens / Prototyping</div>
+          </div>
+        </div>
+        <div class="role-group-members">
+          <span class="member-tag">Karen Shen</span>
+          <span class="member-tag">Michael Fu</span>
+          <span class="member-tag">Stanley Tung</span>
+        </div>
+        <div class="role-bar-track"><div class="role-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>3 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 4 — PRODUCTS (Part 1) ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 1020 -50 Q 1220 230, 1080 530" stroke="#D71920" stroke-width="48" fill="none" stroke-linecap="round" opacity="0.28"/>
+    <path d="M -80 720 Q 180 580, 300 810" stroke="#AFE0EF" stroke-width="36" fill="none" stroke-linecap="round" opacity="0.2"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Our Products</div>
+  <h2 class="page-headline" style="margin-bottom:0;">
+    The <span class="em">product portfolio</span> protecting digital lives worldwide.
+  </h2>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-img v-red">
+        <img src="product-screenshots/kaleida.jpg" alt="Kaleida AI">
+        <span class="pv-badge">Flagship</span>
+      </div>
+      <div class="product-card-body">
+        <h3>TrendLife App</h3>
+        <p>The core consumer product integrating device protection, privacy management, and family safety with AI-powered proactive defense.</p>
+        <div class="product-tags">
+          <span>Mobile</span>
+          <span>AI-Powered</span>
+          <span>Cross-Platform</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-img v-gradient">
+        <img src="product-screenshots/kaleida.jpg" alt="Kaleida AI">
+        <span class="pv-badge">2026 New</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Kaleida AI</h3>
+        <p>Industry-first AI family companion protecting against AI-powered scams and privacy risks, treating the family as a unified unit.</p>
+        <div class="product-tags">
+          <span>AI Companion</span>
+          <span>Family</span>
+          <span>New Product</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-img">
+        <img src="product-screenshots/scamcheck-hero.png" alt="ScamCheck">
+        <span class="pv-badge">Anti-Scam</span>
+      </div>
+      <div class="product-card-body">
+        <h3>ScamCheck</h3>
+        <p>AI-powered fraud detection engine featuring call blocking, SMS filtering, deepfake detection, and Scam Radar proactive alerts.</p>
+        <div class="product-tags">
+          <span>Call Block</span>
+          <span>Deepfake</span>
+          <span>Scam Radar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-img">
+        <img src="product-screenshots/mobile-security.jpg" alt="Mobile Security">
+        <span class="pv-badge">Security</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Mobile Security</h3>
+        <p>Dual-platform mobile security for iOS and Android with Web Guard safe browsing and Pay Guard secure transactions.</p>
+        <div class="product-tags">
+          <span>iOS (iVBM)</span>
+          <span>Android (VBM)</span>
+          <span>Web Guard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>4 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 5 — PRODUCTS (Part 2) ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M -60 -30 Q 200 150, 100 420" stroke="#AFE0EF" stroke-width="38" fill="none" stroke-linecap="round" opacity="0.22"/>
+    <path d="M 1100 650 Q 900 800, 700 780" stroke="#D71920" stroke-width="34" fill="none" stroke-linecap="round" opacity="0.18"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Our Products</div>
+  <h2 class="page-headline" style="margin-bottom:0;">
+    From <span class="em">identity protection</span> to <span class="em">desktop security</span>.
+  </h2>
+
+  <div class="product-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="product-card">
+      <div class="product-card-img">
+        <img src="product-screenshots/idp-hero.png" alt="ID Protection">
+        <span class="pv-badge">Identity</span>
+      </div>
+      <div class="product-card-body">
+        <h3>ID Protection</h3>
+        <p>Comprehensive identity security with dark web monitoring, password vault, and social media account checks.</p>
+        <div class="product-tags">
+          <span>Dark Web</span>
+          <span>Vault</span>
+          <span>Social Check</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-img">
+        <img src="product-screenshots/vpn.jpg" alt="VPN Proxy One">
+        <span class="pv-badge">Privacy</span>
+      </div>
+      <div class="product-card-body">
+        <h3>VPN Proxy One</h3>
+        <p>Encrypted VPN connection and public WiFi protection, ensuring user security and privacy across any network environment.</p>
+        <div class="product-tags">
+          <span>VPN</span>
+          <span>WiFi Protection</span>
+          <span>Privacy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-img">
+        <img src="product-screenshots/maximum-security.jpg" alt="Trend Micro Titanium Maximum Security">
+        <span class="pv-badge">Desktop</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Titanium / Maximum Security</h3>
+        <p>Award-winning desktop security suite providing comprehensive protection against viruses, ransomware, and online threats across PC and Mac.</p>
+        <div class="product-tags">
+          <span>PC / Mac</span>
+          <span>Anti-Virus</span>
+          <span>Ransomware</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>5 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 6 — DESIGN PROCESS ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M -50 -30 Q 200 150, 100 420" stroke="#AFE0EF" stroke-width="38" fill="none" stroke-linecap="round" opacity="0.25"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Design Process</div>
+  <h2 class="page-headline" style="margin-bottom:4px;">
+    A <span class="em">Double Diamond</span> approach to design.
+  </h2>
+  <p class="page-sub">From problem exploration to solution delivery, each phase has clear outputs and validation criteria.</p>
+
+  <div class="diamond-bar">
+    <div class="diamond-half discover">Discover &amp; Define</div>
+    <div class="diamond-half deliver">Develop &amp; Deliver</div>
+  </div>
+
+  <div class="process-flow">
+    <div class="process-phase">
+      <div class="phase-num">Phase 01</div>
+      <h3>Discover</h3>
+      <p>Gather user needs, market trends, and stakeholder input to build a complete picture of the problem space.</p>
+      <div class="phase-tag">User Research / Stakeholder Interview</div>
+    </div>
+    <div class="process-arrow">&rarr;</div>
+    <div class="process-phase">
+      <div class="phase-num">Phase 02</div>
+      <h3>Define</h3>
+      <p>Focus on core problems, identify design opportunities and success metrics, and produce a design strategy.</p>
+      <div class="phase-tag">Problem Framing / Design Brief</div>
+    </div>
+    <div class="process-arrow">&rarr;</div>
+    <div class="process-phase">
+      <div class="phase-num">Phase 03</div>
+      <h3>Develop</h3>
+      <p>Explore solutions through prototyping and iteration, validating design hypotheses with usability testing.</p>
+      <div class="phase-tag">Prototype / Usability Test</div>
+    </div>
+    <div class="process-arrow">&rarr;</div>
+    <div class="process-phase">
+      <div class="phase-num">Phase 04</div>
+      <h3>Deliver</h3>
+      <p>Produce complete design specs, collaborate with engineering for implementation, and track post-launch metrics.</p>
+      <div class="phase-tag">Design Spec / Handoff / QA</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>6 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 7 — AI x UX ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 900 -60 Q 1150 120, 1100 420" stroke="#D71920" stroke-width="44" fill="none" stroke-linecap="round" opacity="0.25"/>
+    <path d="M -40 700 Q 200 550, 350 750" stroke="#AFE0EF" stroke-width="36" fill="none" stroke-linecap="round" opacity="0.2"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">AI x UX</div>
+  <h2 class="page-headline">
+    Embracing <span class="em">AI</span> to turn designers into <span class="em">product builders</span>.
+  </h2>
+  <p class="page-sub">We're driving a team transformation — designers are no longer just creating mockups, but directly building products.</p>
+
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="ai-icon">AI</div>
+      <h3>AI-Augmented Design</h3>
+      <p>Integrating AI tools into daily design workflows to accelerate the journey from concept to prototype.</p>
+      <ul>
+        <li>Claude Code for frontend development</li>
+        <li>AI-generated Design Tokens</li>
+        <li>Figma x AI smart design workflows</li>
+        <li>Prompt-driven UI generation</li>
+      </ul>
+    </div>
+    <div class="ai-card">
+      <div class="ai-icon">VC</div>
+      <h3>Vibe Coding in Practice</h3>
+      <p>Designers describe requirements in natural language; AI produces code that automatically follows brand guidelines.</p>
+      <ul>
+        <li>CLAUDE.md brand rules auto-applied</li>
+        <li>Digitized Design System</li>
+        <li>Custom Skills for workflow automation</li>
+        <li>Git collaboration and Code Review</li>
+      </ul>
+    </div>
+    <div class="ai-card">
+      <div class="ai-icon">PB</div>
+      <h3>Product Builder Transformation</h3>
+      <p>From Designer to Product Builder — owning end-to-end product building capability.</p>
+      <ul>
+        <li>Seed team Coach program</li>
+        <li>Weekly Office Hours practice</li>
+        <li>Playbook and SOP documentation</li>
+        <li>Demo Day showcase culture</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>7 / 8</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 8 — WHY JOIN US ═══════════ -->
+<div class="page">
+  <svg class="page-arcs" viewBox="0 0 1122 793" preserveAspectRatio="none">
+    <path d="M 820 -80 Q 1060 80, 1200 380" stroke="#D71920" stroke-width="58" fill="none" stroke-linecap="round" opacity="0.3"/>
+    <path d="M 1220 500 Q 1000 700, 650 840" stroke="#AFE0EF" stroke-width="50" fill="none" stroke-linecap="round" opacity="0.35"/>
+  </svg>
+
+  <div class="tl-logo">
+    <svg class="tl-mark" width="28" height="26"><use href="#tl-mark"/></svg>
+    <span class="tl-logo-text">TrendLife</span>
+  </div>
+
+  <div class="section-label">Why Join Us</div>
+  <h2 class="page-headline">
+    Join a design team that is <span class="em">defining the future</span>.
+  </h2>
+
+  <div class="join-grid">
+    <div class="join-card">
+      <div class="join-icon">GL</div>
+      <div>
+        <h3>Global Impact</h3>
+        <p>Your designs protect millions of users' digital lives worldwide. Based in Taiwan, our products reach Japan, the US, Europe, and other major markets.</p>
+      </div>
+    </div>
+    <div class="join-card">
+      <div class="join-icon">BR</div>
+      <div>
+        <h3>Brand Transformation Frontline</h3>
+        <p>Be part of the TrendLife rebrand, transforming from traditional cybersecurity into an AI-driven digital life guardian. Your design decisions directly shape the brand's future.</p>
+      </div>
+    </div>
+    <div class="join-card">
+      <div class="join-icon">AI</div>
+      <div>
+        <h3>AI-First Work Culture</h3>
+        <p>The team is fully adopting an AI toolchain (Claude Code, Figma AI, Custom Skills). You'll be a pioneer at the intersection of AI and design.</p>
+      </div>
+    </div>
+    <div class="join-card">
+      <div class="join-icon">GR</div>
+      <div>
+        <h3>Diverse Growth Paths</h3>
+        <p>A cross-functional collaboration environment with UX / VX / TW / DE disciplines learning from each other. We offer coaching programs, Office Hours, and monthly UX Showcases.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <div>
+      <h3>Ready to build the future<br>of digital life protection?</h3>
+      <p>We'd love to have you on the team.</p>
+    </div>
+    <div class="cta-arrow">&rarr;</div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Trend Micro Confidential</span>
+    <span>8 / 8</span>
+  </div>
+</div>
+
+</body>
+</html>
